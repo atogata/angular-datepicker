@@ -41,6 +41,18 @@
                          (onRightNav)="onRightNavClick($event)">
       </dp-month-calendar>
 
+      <dp-year-calendar #yearCalendar
+                         *ngSwitchCase="'year'"
+                         [config]="dayCalendarConfig"
+                         [ngModel]="_selected"
+                         [displayDate]="displayDate"
+                         [theme]="theme"
+                         (onSelect)="dateSelected($event, 'year', selectEvent.SELECTION, false)"
+                         (onGoToCurrent)="onGoToCurrent.emit()"
+                         (onLeftNav)="onLeftNavClick($event)"
+                         (onRightNav)="onRightNavClick($event)">
+      </dp-year-calendar>
+
       <dp-time-select #timeSelect
                       *ngSwitchCase="'time'"
                       [config]="timeSelectConfig"

@@ -48,6 +48,7 @@ import {
 import {Moment, unitOfTime} from 'moment';
 import {DateValidator} from '../common/types/validator.type';
 import {MonthCalendarComponent} from '../month-calendar/month-calendar.component';
+import {YearCalendarComponent} from '../year-calendar/year-calendar.component';
 import {DayTimeCalendarComponent} from '../day-time-calendar/day-time-calendar.component';
 import {INavEvent} from '../common/models/navigation-event.model';
 import {SelectEvent} from '../common/types/selection-evet.enum.';
@@ -105,6 +106,7 @@ export class DatePickerComponent implements OnChanges,
   @ViewChild('container') calendarContainer: ElementRef;
   @ViewChild('dayCalendar') dayCalendarRef: DayCalendarComponent;
   @ViewChild('monthCalendar') monthCalendarRef: MonthCalendarComponent;
+  @ViewChild('yearCalendar') yearCalendarRef: YearCalendarComponent;
   @ViewChild('daytimeCalendar') dayTimeCalendarRef: DayTimeCalendarComponent;
   @ViewChild('timeSelect') timeSelectRef: TimeSelectComponent;
 
