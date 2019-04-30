@@ -3,21 +3,7 @@
   "author": "Vlad Ioffe",
   "version": "2.11.0",
   "license": "MIT",
-  "main": "index.js",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve --o",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e --port 3200",
-    "e2e:headless": "ng e2e -- headless",
-    "build:index": "cd build-helpers && node index-maker.js",
-    "build:demo": "rm -rf dist/ && ng build --prod --base-href /angular-datepicker/ && npm run build:index",
-    "build:prod": "ng-packagr -p package.json",
-    "release": "npm run build:prod && npm publish bin",
-    "pack": "cd bin && npm pack"
-  },
+  "main": "bundles/ng2-date-picker.umd.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/vlio20/angular-datepicker.git"
@@ -82,19 +68,17 @@
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true
   },
-  "ngPackage": {
-    "lib": {
-      "entryFile": "src/app/index.ts",
-      "externals": {
-        "moment": "moment"
-      }
-    },
-    "dest": "bin",
-    "whitelistedNonPeerDependencies": [
-      "moment"
-    ]
-  },
   "dependencies": {
-    "moment": "^2.22.2"
-  }
+    "moment": "^2.22.2",
+    "tslib": "^1.9.0"
+  },
+  "module": "fesm5/ng2-date-picker.js",
+  "es2015": "fesm2015/ng2-date-picker.js",
+  "esm5": "esm5/ng2-date-picker.js",
+  "esm2015": "esm2015/ng2-date-picker.js",
+  "fesm5": "fesm5/ng2-date-picker.js",
+  "fesm2015": "fesm2015/ng2-date-picker.js",
+  "typings": "ng2-date-picker.d.ts",
+  "metadata": "ng2-date-picker.metadata.json",
+  "sideEffects": false
 }
