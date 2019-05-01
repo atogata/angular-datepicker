@@ -15,8 +15,6 @@ export class YearCalendarService {
     isNavHeaderBtnClickable: false,
     yearBtnFormat: 'YYYY',
     locale: moment.locale(),
-    multipleYearsNavigateBy: 10,
-    showMultipleYearsNavigation: false,
     unSelectOnClick: true
   };
 

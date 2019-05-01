@@ -66,8 +66,6 @@ export class YearCalendarComponent implements OnInit, OnChanges, ControlValueAcc
   @Output() onGoToCurrent: EventEmitter<void> = new EventEmitter();
   @Output() onLeftNav: EventEmitter<INavEvent> = new EventEmitter();
   @Output() onRightNav: EventEmitter<INavEvent> = new EventEmitter();
-  @Output() onLeftSecondaryNav: EventEmitter<INavEvent> = new EventEmitter();
-  @Output() onRightSecondaryNav: EventEmitter<INavEvent> = new EventEmitter();
 
   isInited: boolean = false;
   componentConfig: IYearCalendarConfigInternal;
@@ -81,8 +79,6 @@ export class YearCalendarComponent implements OnInit, OnChanges, ControlValueAcc
   navLabel: string;
   showLeftNav: boolean;
   showRightNav: boolean;
-  showSecondaryLeftNav: boolean;
-  showSecondaryRightNav: boolean;
 
   api = {
     toggleCalendar: this.toggleCalendarMode.bind(this),
@@ -105,8 +101,6 @@ export class YearCalendarComponent implements OnInit, OnChanges, ControlValueAcc
     this.navLabel = this.yearCalendarService.getHeaderLabel(this.componentConfig, this.currentDateView);
     this.showLeftNav = this.yearCalendarService.shouldShowLeft(this.componentConfig.min, this._currentDateView);
     this.showRightNav = this.yearCalendarService.shouldShowRight(this.componentConfig.max, this.currentDateView);
-    this.showSecondaryLeftNav = this.componentConfig.showMultipleYearsNavigation && this.showLeftNav;
-    this.showSecondaryRightNav = this.componentConfig.showMultipleYearsNavigation && this.showRightNav;
   }
 
   get currentDateView(): Moment {
@@ -227,41 +221,11 @@ export class YearCalendarComponent implements OnInit, OnChanges, ControlValueAcc
     this.onLeftNav.emit({from, to});
   }
 
-  onLeftSecondaryNavClick() {
-    let navigateBy = this.componentConfig.multipleYearsNavigateBy;
-    const isOutsideRange = this.componentConfig.min &&
-      this.currentDateView.year() - this.componentConfig.min.year() < navigateBy;
-
-    if (isOutsideRange) {
-      navigateBy = this.currentDateView.year() - this.componentConfig.min.year();
-    }
-
-    const from = this.currentDateView.clone();
-    this.currentDateView = this.currentDateView.clone().subtract(navigateBy, 'year');
-    const to = this.currentDateView.clone();
-    this.onLeftSecondaryNav.emit({from, to});
-  }
-
   onRightNavClick() {
     const from = this.currentDateView.clone();
     this.currentDateView = this.currentDateView.clone().add(12, 'year');
     const to = this.currentDateView.clone();
     this.onRightNav.emit({from, to});
-  }
-
-  onRightSecondaryNavClick() {
-    let navigateBy = this.componentConfig.multipleYearsNavigateBy;
-    const isOutsideRange = this.componentConfig.max &&
-      this.componentConfig.max.year() - this.currentDateView.year() < navigateBy;
-
-    if (isOutsideRange) {
-      navigateBy = this.componentConfig.max.year() - this.currentDateView.year();
-    }
-
-    const from = this.currentDateView.clone();
-    this.currentDateView = this.currentDateView.clone().add(navigateBy, 'year');
-    const to = this.currentDateView.clone();
-    this.onRightSecondaryNav.emit({from, to});
   }
 
   toggleCalendarMode() {

@@ -12,8 +12,6 @@ export interface IConfig {
   yearBtnFormat?: string;
   yearBtnFormatter?: (day: Moment) => string;
   yearBtnCssClassCallback?: (day: Moment) => string;
-  multipleYearsNavigateBy?: number;
-  showMultipleYearsNavigation?: boolean;
   returnedValueType?: ECalendarValue;
   showGoToCurrent?: boolean;
   unSelectOnClick?: boolean;
